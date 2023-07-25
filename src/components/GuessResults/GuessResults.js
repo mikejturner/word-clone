@@ -1,14 +1,14 @@
 import React from 'react';
 
-function GuessTracker({ guesses }) {
+function GuessResults({ guesses }) {
   console.log(guesses);
   console.log(typeof guesses);
   return (
     <div className="guess-results">
-      {guesses.map((guess) => {
+      {guesses.map((guess, index) => {
         return (
-          <p key={guess.id} className="guess">
-            {guess.value}
+          <p key={index} className="guess">
+            {guess}
           </p>
         );
       })}
@@ -16,4 +16,4 @@ function GuessTracker({ guesses }) {
   );
 }
 
-export default GuessTracker;
+export default GuessResults;
