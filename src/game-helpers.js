@@ -53,3 +53,28 @@ export function checkGuess(guess, answer) {
 
   return result;
 }
+
+export function getGameState(guesses, answer, numOfGuessesAllowed) {
+  const outOfGuesses = guesses.length >= numOfGuessesAllowed;
+  const lastGuess = guesses.at(-1);
+
+  if (hasFoundAnswer(lastGuess, answer)) {
+    return 'win';
+  }
+  if (outOfGuesses) {
+    return 'lose';
+  }
+  return 'in-progress';
+}
+
+export function hasFoundAnswer(guess, answer) {
+  if (!guess) return false;
+
+  const result = checkGuess(guess, answer);
+
+  return result.reduce(
+    (accumulator, currentValue) =>
+      accumulator && currentValue.status === 'correct',
+    true
+  );
+}
